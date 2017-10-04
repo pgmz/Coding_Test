@@ -8,17 +8,18 @@ typedef struct Node_Struct{
 	struct Node_Struct *next;
 }myNode_t;
 
-myNode_t * head;
-bool isEmpty = true;
-bool isFull = false;
-int counter;
-
 void addNode(int myData);
 myNode_t * searchNodePos(int pos);
 myNode_t * searchNodeData(int myData);
 void displayList();
 bool isListEmpty();
 int listSize();
+
+myNode_t * head;
+bool isEmpty = true;
+bool isFull = false;
+int counter;
+
 
 void addNode(int myData){
 
@@ -109,8 +110,6 @@ int main(void) {
 	addNode(50);
 	addNode(10);
 	displayList();
-
-
 
 	return EXIT_SUCCESS;
 }
