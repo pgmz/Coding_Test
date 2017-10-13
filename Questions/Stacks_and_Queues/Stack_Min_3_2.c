@@ -1,72 +1,31 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef enum { false, true } bool;
+/* Code not fully implemented, functions pushToStack,
+ * popFromStack, getPeak, isEmpty, aren't implemented.
+ * Neither the type "Stack_t"
+ */
 
-#define START_STACK		0
-#define END_STACK		20
+Stack_t main_stack;
+Stack_t min_stack;
 
-
-int array[END_STACK];
-
-int pointer = START_STACK;
-int min = 0x7FFFFFFF;
+int min_val = 0;
 
 void push(int data){
 
-	min = (min > data)?(data):(min);
+	if(!isEmpty(main_stack)){
+		if(min_val > data){
+			pushToStack(min_stack, min_val);
+			min_val = data;
+		} else if(getPeak(min_stack) > data){
+			pushToStack(min_stack, data);
+		} else {
 
-	if(pointer > END_STACK){
-		printf("%s \n", "Stack is full");
-		return;
+		}
+	} else {
+		min_val = data;
 	}
 
-	array[pointer] = data;
-	pointer++;
+	pushToStack(main_stack, data);
 
-
-}
-
-int pop(){
-
-	int popped;
-
-	if(pointer == START_STACK){
-		printf("%s \n", "Stack is Empty");
-		return 0;
-	}
-
-	popped =  array[pointer];
-	pointer--;
-
-	return popped;
-
-}
-
-int getMin(){
-	return min;
-}
-
-int main(void) {
-
-
-	int x;
-	for(x = 20; x >= 0; x--){
-		push(10*x);
-		printf("%d, ", getMin());
-
-
-	}
-	printf("\n");
-
-	for(x = 0; x < 20; x++){
-		printf("%d, ", pop());
-		printf("%d, ", getMin());
-
-
-	}
-
-	printf("\n");
-
-	return EXIT_SUCCESS;
 }
